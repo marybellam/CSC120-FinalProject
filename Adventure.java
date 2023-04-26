@@ -7,23 +7,26 @@ public class Adventure {
     String noun;
     Map<String, Object> inventory;
 
+    /**
+     * Sets up the map,exits, and objects in the map
+     */
     void setup() {
         scanner = new Scanner(System.in);
-        Place dining = new Place("dining", "You are in the dining room.\n" + "There are exists to the garden and the kitchen, and upstairs!");
+        Place dining = new Place("dining", "You are in the dining room.\n" + "There are exists to the garden and the kitchen, and stairs!");
         Place garden = new Place("garden", "You are in the garden");
         Place kitchen = new Place("kitchen", "You are in the kitchen");
         Place living = new Place("living", "You are in the living room");
-        Place upstairs = new Place("upstairs", "You are upstairs, you can exit to the hall");
-        Place upstairsHall = new Place("hall", "You in the upstairs hall, you can go to the bedroom or gameroom");
+        Place stairs = new Place("stairs", "You are stairs, you can exit to the hall");
+        Place upstairsHall = new Place("hall", "You in the stairs hall, you can go to the bedroom, gameroom, or stairs");
         Place bedroom = new Place("bedroom", "You are in the bedroom");
         Place gameRoom = new Place("gameroom","you are in the gameroom");
 
-        dining.exits(garden,kitchen,upstairs);
+        dining.exits(garden,kitchen,stairs);
         garden.exits(dining);
         kitchen.exits(dining);
         living.exits(dining);
-        upstairs.exits(dining, upstairsHall);
-        upstairsHall.exits(upstairs, bedroom, gameRoom);
+        stairs.exits(dining, upstairsHall);
+        upstairsHall.exits(stairs, bedroom, gameRoom);
         bedroom.exits(upstairsHall);
         gameRoom.exits(upstairsHall);
 
@@ -34,7 +37,9 @@ public class Adventure {
         bedroom.put(book);
         inventory = new HashMap<String, Object>();
     }
-
+    /**
+     * Runs the game
+     */
     void run() {
         setup();
         System.out.print(here.arrive());
@@ -52,14 +57,14 @@ public class Adventure {
             else if (verb.equals("grab")){
                 Object x = here.get(noun);
                 if (x != null){
-                    System.out.println("Picked up the" + x.name);
+                    System.out.println("Picked up the " + x.name);
                     inventory.put(noun,x);
                 }
                 else System.out.println("What "+noun+" ?");
             }else if (verb.equals("drop")){
                 Object x = inventory.get(noun);
                 if (x != null){
-                    System.out.println("Dropped the" + x.name);
+                    System.out.println("Dropped the " + x.name);
                     here.put(x);
                 }
                 else System.out.println("What " + noun + "?");
@@ -67,7 +72,9 @@ public class Adventure {
             else System.out.println("Do what?");
         }
     }
-
+    /**
+     * Takes user input
+     */
     void read(){
         System.out.println("> ");
         String line = scanner.nextLine();
