@@ -13,10 +13,10 @@ public class Adventure {
         Place garden = new Place("garden", "You are in the garden");
         Place kitchen = new Place("kitchen", "You are in the kitchen");
         Place living = new Place("living", "You are in the living room");
-        Place upstairs = new Place("upstairs", "You are upstairs");
-        Place upstairsHall = new Place("hall", "You in the upstairs hall");
-        Place bedroom = new Place("bedroom", "You are upstairs");
-        Place gameRoom = new Place("Gameroom","you are in the gameroom");
+        Place upstairs = new Place("upstairs", "You are upstairs, you can exit to the hall");
+        Place upstairsHall = new Place("hall", "You in the upstairs hall, you can go to the bedroom or gameroom");
+        Place bedroom = new Place("bedroom", "You are in the bedroom");
+        Place gameRoom = new Place("gameroom","you are in the gameroom");
 
         dining.exits(garden,kitchen,upstairs);
         garden.exits(dining);
@@ -49,13 +49,13 @@ public class Adventure {
                     System.out.println("You can't go there!");
                 }
             }
-            else if (verb.equals("take")){
+            else if (verb.equals("grab")){
                 Object x = here.get(noun);
                 if (x != null){
                     System.out.println("Picked up the" + x.name);
                     inventory.put(noun,x);
                 }
-                else System.out.println("What "+"noun");
+                else System.out.println("What "+noun+" ?");
             }else if (verb.equals("drop")){
                 Object x = inventory.get(noun);
                 if (x != null){

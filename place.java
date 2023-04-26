@@ -20,11 +20,11 @@ class Place{
     }
 
     String arrive(){
-        String s = description + "\n";
-        for (Object x: objects.values()) {
-            s = s + x.description + "\n";
+        String str = description + "\n";
+        for (Object o: objects.values()) {
+            str = str + o.description + "\n";
         }
-        return s;
+        return str;
     }
 
     Place move(String name){
@@ -41,13 +41,13 @@ class Place{
         return exits.get(name);
     }
 
-    void put(Object x){
-        objects.put(x.name,x);
+    void put(Object o){
+        objects.put(o.name,o);
     }
 
     Object get(String name){
-        Object x = objects.get(name);
+        Object o = objects.get(name);
         objects.remove(name);
-        return x;
+        return o;
     }
 }
