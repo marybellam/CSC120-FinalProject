@@ -3,7 +3,7 @@ import java.util.*;
 public class Adventure {
     Place here;
     Scanner scanner;
-    String verb;
+    String action;
     String noun;
     Map<String, Object> inventory;
 
@@ -45,7 +45,7 @@ public class Adventure {
         System.out.print(here.arrive());
         while (true) {
             read();
-            if (verb.equals("go")){
+            if (action.equals("go")){
                 Place there = here.find(noun);
                 if (there != null) {
                     System.out.print(there.arrive());
@@ -54,14 +54,14 @@ public class Adventure {
                     System.out.println("You can't go there!");
                 }
             }
-            else if (verb.equals("grab")){
+            else if (action.equals("grab")){
                 Object x = here.get(noun);
                 if (x != null){
                     System.out.println("Picked up the " + x.name);
                     inventory.put(noun,x);
                 }
                 else System.out.println("What "+noun+" ?");
-            }else if (verb.equals("drop")){
+            }else if (action.equals("drop")){
                 Object x = inventory.get(noun);
                 if (x != null){
                     System.out.println("Dropped the " + x.name);
@@ -79,7 +79,7 @@ public class Adventure {
         System.out.println("> ");
         String line = scanner.nextLine();
         String[] words = line.split(" ");
-        verb = words[0];
+        action = words[0];
         noun = words[1];
     }
 

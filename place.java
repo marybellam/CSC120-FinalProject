@@ -44,7 +44,7 @@ class Place{
                 System.out.println(place.arrive());
                 return place;
             }
-            System.out.println("You can't go there");
+            System.out.println("I can't go there!");
             return this;
         }
     /**
