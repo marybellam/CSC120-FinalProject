@@ -1,75 +1,45 @@
 import java.util.*;
+import java.io.*;
 
-class Place{
-    private String name;
-    private String description;
-    private Map<String, Object> objects;
-    private Map<String, Place> exits;
+class Place extends Entity{
+    private Map<String, Entity> links;
 
     Place(String name, String description){
-        this.name = name;
-        this.description = description;
-        objects = new HashMap<String,Object>();
-        exits = new HashMap<String,Place>();
+      super(name, description);
     }
     /**
      * Has the exits of each place
      * @param exits
      */
-    void exits(Place...exits){
-        for (Place p : exits){
-            this.exits.put(p.name, p);
-        }
+    void links(Entity...links){
+        if(this.links != null) throw new Error("can only set links once");
+        this.links = new HashMap<String, Entity>();
+        for (Entity e:links) this.links.put(e.name,e);
     }
-    /**
-     * The desciprion of the place, and tells user they are in the place
-     * @return str - description
-     */
-    String arrive(){
-        String str = description + "\n";
-        for (Object o: objects.values()) {
-            str = str + o.description + "\n";
-        }
-        return str;
+    
+    Entity find(String name){
+        return links.get(name);
     }
 
-    /**
-     * Moves te location of where you are
-     * @param name - name of place
-     * @return name
-     */
-    Place move(String name){
-        Place place = exits.get(name);
-            if(place != null){
-                System.out.println(place.arrive());
-                return place;
-            }
-            System.out.println("I can't go there!");
-            return this;
-        }
-    /**
-     * Returns the name of the exits, of the room you're in
-     * @param name
-     * @return the name of the exit
-     */
-    Place find(String name){
-        return exits.get(name);
-    }
-    /**
-     * Puts the object o into a room
-     * @param o - object
-     */
-    void put(Object o){
-        objects.put(o.name,o);
-    }
-    /**
-     * Returns the object
-     * @param name - name of object
-     * @return object
-     */
     Object get(String name){
-        Object o = objects.get(name);
-        objects.remove(name);
-        return o;
+        Object x = (Object) links.get(name);
+        links.remove(name);
+        return x;
+    }
+
+    void put(Entity x){
+        links.put(x.name,x);
+    }
+
+    Place act(Place from, String action, PrintStream out){
+        if (!action.equals("go")) {
+            System.out.println("You can't do that to a place");
+            return from;
+        }
+        Place to = this;
+        for (Entity e: from.links.values()) e.move(from, to, out);
+        out.println(description);
+        for (Entity e: links.values()) e.arrive(to, out);
+        return to;
     }
 }
