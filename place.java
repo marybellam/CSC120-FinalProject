@@ -7,10 +7,7 @@ class Place extends Entity{
     Place(String name, String description){
       super(name, description);
     }
-    /**
-     * Has the exits of each place
-     * @param exits
-     */
+    
     void links(Entity...links){
         if(this.links != null) throw new Error("can only set links once");
         this.links = new HashMap<String, Entity>();
@@ -37,7 +34,10 @@ class Place extends Entity{
             return from;
         }
         Place to = this;
-        for (Entity e: from.links.values()) e.move(from, to, out);
+        for (Entity e: from.links.values())
+        {
+            e.move(from, to, out);
+        }
         out.println(description);
         for (Entity e: links.values()) e.arrive(to, out);
         return to;
