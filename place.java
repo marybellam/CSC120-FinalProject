@@ -10,9 +10,13 @@ class Place extends Entity{
     }
     
     void links(Entity...links){
-        if(this.links != null) throw new Error("can only set links once");
+        if(this.links != null){
+            throw new Error("can only set links once");
+        }
         this.links = new ConcurrentHashMap<String, Entity>();
-        for (Entity e:links) this.links.put(e.name,e);
+        for (Entity e:links){
+            this.links.put(e.name,e);
+        }
     }
     
     Entity find(String name){
@@ -20,7 +24,7 @@ class Place extends Entity{
     }
 
     Object get(String name){
-        Object x = (Object) links.get(name);
+        Object x = (Object)links.get(name);
         links.remove(name);
         return x;
     }
@@ -38,8 +42,7 @@ class Place extends Entity{
         for (Entity e: from.links.values()){
             e.move(from, to, out);
         }
-        
-        out.println(description);
+        System.out.println(description);
         for (Entity e: links.values()) {
             e.arrive(to, out);
         }

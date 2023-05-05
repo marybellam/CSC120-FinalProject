@@ -9,14 +9,15 @@ class Object extends Entity{
     }
 
     Place act(Place here, String action, PrintStream out){
-
         if (action.equals("grab") ){
             take(here,out);
         }
-        else if(action.equals("drop")) drop(here,out);
-        else System.out.println("you cant" + action + "it");
+        else if(action.equals("drop")){
+            drop(here,out);
+        }else {
+            System.out.println("you cant" + action + "it");
+        }
         return here;
-        
     }
     private void take(Place here, PrintStream out){
         if(carried){
@@ -37,13 +38,17 @@ class Object extends Entity{
     }
 
     void move(Place here, Place there, PrintStream out){
-        if(!carried) return;
+        if(!carried){
+            return;
+        }
         here.get(name);
         there.put(this);
     }
 
     void arrive(Place here, PrintStream out){
-        if(carried) return;
+        if(carried){
+            return;
+        }
         System.out.println(description);
     }
 }

@@ -1,7 +1,8 @@
 import java.io.*;
 
 class Entity {
-    final String name, description;
+    final String name;
+    final String description;
 
     Entity(String name, String description){
         this.name = name;
@@ -19,6 +20,5 @@ class Entity {
 
     void arrive(Place here, PrintStream out){
 
-    }
-    
+    }   
 }

@@ -2,7 +2,10 @@ import java.util.*;
 import java.io.*;
 
 class Puzzle extends Entity{
-    private String action, need, failure, success;
+    private String action;
+    private String need;
+    private String failure;
+    private String success;
     private List<Object> contents;
 
     Puzzle(String name, String description){
@@ -15,7 +18,9 @@ class Puzzle extends Entity{
         this.need = need;
         this.failure = failure;
         this.success = success;
-        for(Object x: contents) this.contents.add(x);
+        for(Object x: contents){
+            this.contents.add(x);
+        }
     }
 
     void arrive(Place here, PrintStream out){
