@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
-
+/**
+ * Sets up, runs the game, and takes in player input
+ */
 public class Adventure {
     Place here;
     Scanner scanner;
@@ -33,7 +35,7 @@ public class Adventure {
         Object paper2 = new Object("second paper", "you found the second halve of the slip of paper, it reads:\n"+ "PETITION FOR DISSOLUTION OF MARRIAGE\n"+"Looks like Josephine was trying to divorse her husband.\n"+"CLUE 2 FOUND");
         Puzzle safe = new Puzzle("safe","there is a safe here...it looks like i can pry it open with a knife");
         Puzzle chest = new Puzzle("chest", "there is a chest here");
-        Puzzle body = new Puzzle("body", "there is a body lying on the floor with multiple stab wounds here, she seems to be holding something.");
+        Puzzle body = new Puzzle("body", "there is a body lying on the floor with multiple stab wounds here, she seems to be holding something. I should take a closer look.");
         Puzzle bookshelf = new Puzzle("bookshelf", "There is a bookshelf with a missing book near the wall, where you see spots of blood around the bookshelf.");
 
         chest.doThis("open" , "key", new Object[] {diary}, "you need a key", "you opened the chest");
@@ -53,7 +55,7 @@ public class Adventure {
 
     }
     /**
-     * Runs the game
+     * Runs the game, ends game once the user guesses who the murder is. Gives different endings if player guesses wrong.
      */
     void run() {
         setup();
@@ -82,7 +84,7 @@ public class Adventure {
 
     }
     /**
-     * Takes user input
+     * Takes user input and splits it up into action and noun
      */
     void read(){
         System.out.println("> ");
