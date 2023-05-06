@@ -41,7 +41,7 @@ public class Adventure {
         chest.doThis("open" , "key", new Object[] {diary}, "you need a key", "you opened the chest");
         body.doThis("examine" , "gloves", new Object[] {paper}, "you need gloves", "you got a torn slip of paper");
         safe.doThis("open", "knife", new Object[] {paper2}, "you need a knife", "You opened the safe");
-        bookshelf.doThis("insert", "book", new Object[] {}, "you're missing something","The bookhelf slides to the right to reveal a secret 'passageway'");
+        bookshelf.doThis("insert", "book", new Object[] {}, "you're missing something","The bookshelf slides to the right to reveal a secret 'passageway'");
         dining.links(garden,kitchen,stairs, chest,living);
         garden.links(dining,key);
         kitchen.links(dining,gloves,secretPassageway);
@@ -64,12 +64,12 @@ public class Adventure {
             read();
             if(action.equals("sus")){
                 if(noun.equals("angel") || noun.equals("Angel")){
-                    System.out.println("After the police looked through your evidece they found you were right! James confessed to the murder after being questioned!");
+                    System.out.println("After the police looked through your evidence they found you were right! James confessed to the murder after being questioned!");
                     System.out.println("**YOU WIN***");
                     break;
                 }
                 if(noun.equals("angel") == false){
-                    System.out.println("After the police looked through your evidece they found you were wrong! The murderer is still out there ! :( ");
+                    System.out.println("After the police looked through your evidence they found you were wrong! The murderer is still out there ! :( ");
                     System.out.println("**YOU LOSE***");
                     break;
                 }
