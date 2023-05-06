@@ -27,7 +27,7 @@ class Object extends Entity{
         else if(action.equals("drop")){
             drop(here,out);
         }else {
-            System.out.println("you cant" + action + "it");
+            System.out.println("you cant " + action + " it");
         }
         return here;
     }

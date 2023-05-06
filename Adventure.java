@@ -106,12 +106,12 @@ public class Adventure {
         System.out.println("Harry: Josephines best friend, a CEO.");
         System.out.println("Angel: Josephines fiancee, a surgeon.");
         System.out.println("Possible commands are(USE ALL LOWERCASE THROUGHOUT THE GAME)");
-        System.out.println(">go");
-        System.out.println(">grab");
-        System.out.println(">drop");
-        System.out.println(">open");
-        System.out.println(">insert");
-        System.out.println(">examine");
+        System.out.println(">go <place>");
+        System.out.println(">grab <object>");
+        System.out.println(">drop <object>");
+        System.out.println(">open <object>");
+        System.out.println(">insert <object you want to insert into>");
+        System.out.println(">examine <object>");
         System.out.println("When you are ready to say who the murdere use 'sus' and the name of the killer.");
 
         program.run();
